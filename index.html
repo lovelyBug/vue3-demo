@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <button onclick="increase()" id="btn">点我</button>
+  <script src="./index.js"></script>
+  <script>
+    const root = document.querySelector("#app")
+    // 数据响应式
+    const obj = reactive({
+      name: 'hello vue3',
+      age: 1
+    })
+    // computed
+    let double = computed(() => obj.age * 2)
+    // effect
+    effect(() => {
+      root.innerHTML = `${obj.name}，你今年${obj.age}岁，乘以二是${double.value}`
+    })
+    function increase() {
+      obj.age++
+    }
+  </script>
+</body>
+</html>
